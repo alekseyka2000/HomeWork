@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Home Work</string>
+    <string name="country">Country is not detect</string>
 </resources>
