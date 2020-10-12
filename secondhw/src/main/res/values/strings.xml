@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SecondHW</string>
+    <string name="average">Average</string>
+    <string name="sum_of_all_numbers">Sum of all numbers</string>
+    <string name="divide">Divide the set in half. In the first part, sum all the numbers, in the second, subtract, and then divide the first result by the second.</string>
 </resources>
