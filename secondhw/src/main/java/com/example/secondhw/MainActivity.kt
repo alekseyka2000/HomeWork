@@ -3,11 +3,9 @@ package com.example.secondhw
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Math.random
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 

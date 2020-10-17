@@ -1,6 +1,5 @@
 package com.example.secondhw
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,9 +12,9 @@ class SecondActivity: AppCompatActivity() {
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
-            R.id.averageButton -> averageSet()
-            R.id.divideTheSetInHalfButton -> divideSet()
-            R.id.sumOfAllNumbersButton -> sumOfAllNumbersOfSet()
+            R.id.averageButton -> averageSet(set)
+            R.id.divideTheSetInHalfButton -> divideSet(set)
+            R.id.sumOfAllNumbersButton -> sumOfAllNumbersOfSet(set)
         }
     }
 
@@ -23,23 +22,32 @@ class SecondActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        set = intent.getIntArrayExtra("set")?.toSet() as MutableSet<Int>
-        Log.d("Messages", "Set: $set")
+        if (intent.getIntArrayExtra("set")?.toSet()?.isNotEmpty()!!) {
+            set = intent.getIntArrayExtra("set")?.toSet() as MutableSet<Int>
+        }else{
+            Log.d("Message", "Empty set")
+            finish()
+        }
 
         averageButton.setOnClickListener(clickListener)
         divideTheSetInHalfButton.setOnClickListener(clickListener)
         sumOfAllNumbersButton.setOnClickListener(clickListener)
     }
 
-    private fun averageSet() {
+    private fun averageSet(set: MutableSet<Int>) {
+        val average = set.average()
+        Log.d("Message", "Average: $average")
         finish()
     }
 
-    private fun divideSet() {
+    private fun divideSet(set: MutableSet<Int>) {
+        set.divide()
         finish()
     }
 
-    private fun sumOfAllNumbersOfSet() {
+    private fun sumOfAllNumbersOfSet(set: MutableSet<Int>) {
+        val sum = set.sum()
+        Log.d("Message", "Sum: $sum")
         finish()
     }
 }
