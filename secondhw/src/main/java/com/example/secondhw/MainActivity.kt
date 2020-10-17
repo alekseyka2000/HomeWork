@@ -31,6 +31,18 @@ class MainActivity : AppCompatActivity() {
             intentForRes.putExtra("set", name)
             startActivityForResult(intentForRes, REQUEST_CODE)
         }
+
+        startAnotherSecondActivityButton.setOnClickListener {
+            intentForRes = Intent(this, AnotherSecondActivity::class.java)
+            val setNumbers: MutableSet<Int> = mutableSetOf()
+
+            for (members in 1..(8 * random()).toInt()) {
+                setNumbers.add((random() * 9).toInt())
+            }
+            Log.d("Messages", "Set: $setNumbers")
+
+            startActivity(intentForRes)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
