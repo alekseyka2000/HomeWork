@@ -48,7 +48,7 @@ class SecondActivity: AppCompatActivity() {
 
     private fun divideSet(set: MutableSet<Int>) {
         val res = set.divide()
-        if (res!= 0.0) {
+        if (res!= -1000.0) {
             intentForRes.putExtra("Res", res)
             setResult(Activity.RESULT_OK, intentForRes)
         }

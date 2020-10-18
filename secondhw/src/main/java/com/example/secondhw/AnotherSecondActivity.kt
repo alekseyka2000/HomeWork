@@ -1,15 +1,12 @@
 package com.example.secondhw
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_second.*
-import java.util.function.IntUnaryOperator
 
-class AnotherSecondActivity : AppCompatActivity(){
+class AnotherSecondActivity : AppCompatActivity(), IObserver {
     private lateinit var set: MutableSet<Int>
 
     private val clickListener = View.OnClickListener { view ->
@@ -24,25 +21,48 @@ class AnotherSecondActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        /*averageButton.setOnClickListener(clickListener)
+        Storage.add(this)
+        if (set.isEmpty()) {
+            Log.d("Message", "Empty set")
+            finish()
+        }
+
+        averageButton.setOnClickListener(clickListener)
         divideTheSetInHalfButton.setOnClickListener(clickListener)
-        sumOfAllNumbersButton.setOnClickListener(clickListener)*/
+        sumOfAllNumbersButton.setOnClickListener(clickListener)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Storage.remote(this)
+    }
+
+    override fun update() {
+        set = Storage.set
+    }
+
+    override fun updateRes() {}
+
     private fun averageSet(set: MutableSet<Int>) {
-        //val average = set.average()
+        val average = set.average()
         Log.d("Message", "Average: ")
+        Storage.result = average
         finish()
     }
 
     private fun divideSet(set: MutableSet<Int>) {
-        //val res = set.divide()
+        val res = set.divide()
+        if (res != -1000.0) {
+            Storage.result = res
+        }
         finish()
     }
 
     private fun sumOfAllNumbersOfSet(set: MutableSet<Int>) {
-        //val sum = set.sum().toDouble()
+        val sum = set.sum().toDouble()
         Log.d("Message", "Sum: ")
+        Storage.result = sum
         finish()
     }
 }
