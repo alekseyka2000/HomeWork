@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/singIn1"
+        style="@style/BoldTextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/sing_in"
+        android:textSize="42sp"
+        android:layout_alignParentTop="true" />
+
+    <EditText
+        android:id="@+id/email"
+        style="@style/BoldEditText"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:paddingLeft="20dp"
+        android:text="@string/email"
+        android:layout_below="@+id/singIn1"
+        tools:ignore="LabelFor,RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/BoldEditText"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        android:paddingLeft="20dp"
+        android:text="@string/password"
+        android:layout_below="@+id/email"
+        tools:ignore="LabelFor,RtlSymmetry" />
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/password"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/remember"
+        style="@style/BoldTextView"
+        android:text="@string/remember"
+        android:layout_marginTop="24dp"
+        android:layout_toRightOf="@+id/checkbox1"
+        android:layout_below="@+id/password"
+        android:layout_toEndOf="@+id/checkbox1" />
+
+    <TextView
+        style="@style/BoldTextView"
+        android:text="@string/forgot_password"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/password"/>
+
+
+    <TextView
+        android:id="@+id/singIn2"
+        style="@style/BoldTextView"
+        android:layout_width="match_parent"
+        android:background="@drawable/sing_in_button"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/sing_in"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:layout_below="@+id/checkbox1"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/justSingIn"
+        style="@style/BoldTextView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/just_sing_in"
+        android:textColor="@color/gray"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
