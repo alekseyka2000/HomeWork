@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            style="@style/BoldTextView"
+            android:text="@string/sing_in"
+            android:textSize="42sp"
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp"/>
+        <EditText
+            style="@style/BoldEditText"
+            android:text="@string/email"
+            android:paddingLeft="20dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:paddingStart="20dp" />
+
+        <EditText
+            style="@style/BoldEditText"
+            android:text="@string/password"
+            android:paddingLeft="20dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:paddingStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp" />
+                <TextView
+                    style="@style/BoldTextView"
+                    android:text="@string/remember"
+                    />
+            </LinearLayout>
+            <TextView
+                style="@style/BoldTextView"
+                android:text="@string/forgot_password"
+                android:gravity="right"
+                android:layout_weight="1"
+                tools:ignore="RtlHardcoded" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+       style="@style/BoldTextView"
+        android:layout_width="match_parent"
+        android:background="@drawable/sing_in_button"
+        android:gravity="center"
         android:text="@string/sing_in"
-        android:textSize="32sp"
-        android:textStyle="bold|italic"/>
+        android:textColor="@color/white"
+        android:padding="16dp"
+        android:textSize="32sp" />
+
+    <TextView
+        style="@style/BoldTextView"
+        android:text="@string/just_sing_in"
+        android:textColor="@color/gray"
+        android:layout_gravity="center_horizontal"
+        android:gravity="bottom"
+        android:layout_weight="1"/>
 
 </LinearLayout>
