@@ -24,4 +24,18 @@
     <string name="remember">Remember</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="just_sing_in">* Just sing in</string>
+    <string name="android">Android</string>
+    <string name="_20k">20K</string>
+    <string name="_22">22</string>
+    <string name="_125">125</string>
+    <string name="post">Post</string>
+    <string name="followers">Followers</string>
+    <string name="gray_square">gray square</string>
+    <string name="following">Following</string>
+    <string name="username">Username</string>
+    <string name="address">Address</string>
+    <string name="directions">DIRECTIONS</string>
+    <string name="call">Call</string>
+    <string name="save">SAVE</string>
+    <string name="website">WEBSITE</string>
 </resources>

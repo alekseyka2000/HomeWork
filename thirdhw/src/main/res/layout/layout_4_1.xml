@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextView"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="24dp"
+        android:text="@string/android"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        style="@style/HorizontalLayout">
+
+        <ImageView
+            style="@style/GraySquare"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/gray_square" />
+
+        <LinearLayout style="@style/Layout">
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/_125" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/post" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Layout">
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/_20k" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/followers" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Layout">
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/_22" />
+
+            <TextView
+                style="@style/TextView"
+                android:text="@string/following" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/username"
+        android:textSize="16sp" />
+
+    <TextView
+        style="@style/TextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/address" />
+
+    <TextView
+        style="@style/TextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/description" />
+
+    <LinearLayout
+        style="@style/HorizontalLayout">
+
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+        <ImageView
+            style="@style/GraySquare"
+            android:contentDescription="@string/gray_square" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/HorizontalLayout">
+
+        <TextView
+            style="@style/BlueTextView"
+            android:text="@string/directions"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:drawableTopCompat="@drawable/ic_baseline_directions_24" />
+
+        <TextView
+            style="@style/BlueTextView"
+            android:text="@string/call"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:drawableTopCompat="@drawable/ic_baseline_call_24" />
+
+        <TextView
+            style="@style/BlueTextView"
+            android:text="@string/save"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:drawableTopCompat="@drawable/ic_baseline_star_24" />
+
+        <TextView
+            style="@style/BlueTextView"
+            android:text="@string/website"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:drawableTopCompat="@drawable/ic_baseline_insert_link_24" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider">
+    </View>
+
+    <LinearLayout
+        style="@style/HorizontalLayout">
+
+        <ImageView
+            style="@style/GraySquare"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/gray_square" />
+
+        <ImageView
+            style="@style/GraySquare"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/gray_square" />
+
+        <ImageView
+            style="@style/GraySquare"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/gray_square" />
+    </LinearLayout>
+
+</LinearLayout>
