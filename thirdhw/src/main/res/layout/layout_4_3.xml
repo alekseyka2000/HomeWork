@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/TextView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="24dp"
+        android:text="@string/android"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/image"
+        style="@style/GraySquare"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/text"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/gray_square"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        style="@style/Layout"
+        android:layout_above="@+id/text2"
+        android:layout_below="@+id/text"
+        android:layout_toStartOf="@+id/layout2"
+        android:layout_toLeftOf="@+id/layout2">
+
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/_125" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/post" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        style="@style/Layout"
+        android:layout_above="@+id/text2"
+        android:layout_below="@+id/text"
+        android:layout_toStartOf="@+id/layout3"
+        android:layout_toLeftOf="@+id/layout3">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/_20k" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/followers" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout3"
+        style="@style/Layout"
+        android:layout_above="@+id/text2"
+        android:layout_below="@+id/text"
+        android:layout_alignBottom="@+id/image"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/_22" />
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/following" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text2"
+        style="@style/TextView"
+        android:layout_below="@+id/image"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/username"
+        android:textSize="16sp"
+        android:paddingTop="24dp"/>
+
+    <TextView
+        android:id="@+id/text3"
+        style="@style/TextView"
+        android:layout_below="@+id/text2"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/address" />
+
+    <TextView
+        android:id="@+id/text4"
+        style="@style/TextView"
+        android:layout_below="@+id/text3"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:paddingBottom="24dp"
+        android:text="@string/description" />
+
+    <ImageView
+        android:id="@+id/image2"
+        style="@style/GraySquare"
+        android:layout_below="@+id/text4"
+        android:layout_width="50dp"
+        android:paddingLeft="10dp"
+        android:contentDescription="@string/gray_square"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingStart="10dp"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/image3"
+        style="@style/GraySquare"
+        android:layout_toEndOf="@+id/image2"
+        android:layout_below="@+id/text4"
+        android:contentDescription="@string/gray_square"
+        android:layout_toRightOf="@+id/image2" />
+
+    <ImageView
+        android:id="@+id/image4"
+        style="@style/GraySquare"
+        android:layout_below="@+id/text4"
+        android:contentDescription="@string/gray_square"
+        android:layout_toEndOf="@+id/image3"
+        android:layout_toRightOf="@+id/image3" />
+
+    <ImageView
+        android:id="@+id/image5"
+        style="@style/GraySquare"
+        android:layout_below="@+id/text4"
+        android:layout_toEndOf="@+id/image4"
+        android:layout_toRightOf="@+id/image4"
+        android:contentDescription="@string/gray_square" />
+
+    <ImageView
+        android:id="@+id/image6"
+        style="@style/GraySquare"
+        android:layout_below="@+id/text4"
+        android:contentDescription="@string/gray_square"
+        android:layout_toEndOf="@+id/image5"
+        android:layout_toRightOf="@+id/image5"/>
+
+    <ImageView
+        android:id="@+id/image7"
+        style="@style/GraySquare"
+        android:layout_below="@+id/text4"
+        android:layout_toEndOf="@+id/image6"
+        android:layout_toRightOf="@+id/image6"
+        android:contentDescription="@string/gray_square" />
+
+    <TextView
+        android:id="@+id/text5"
+        style="@style/BlueTextView"
+        android:text="@string/directions"
+        app:drawableTopCompat="@drawable/ic_baseline_directions_24"
+        android:layout_below="@+id/image2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="16dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        tools:ignore="RtlSymmetry"
+        android:paddingStart="16dp" />
+
+    <TextView
+        android:id="@+id/text6"
+        style="@style/BlueTextView"
+        android:text="@string/call"
+        app:drawableTopCompat="@drawable/ic_baseline_call_24"
+        android:layout_toRightOf="@+id/text5"
+        android:layout_below="@+id/image2"
+        android:paddingTop="24dp"
+        android:paddingLeft="16dp"
+        android:layout_toEndOf="@+id/text5"
+        android:paddingStart="16dp"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text7"
+        style="@style/BlueTextView"
+        android:text="@string/save"
+        app:drawableTopCompat="@drawable/ic_baseline_star_24"
+        android:layout_toRightOf="@+id/text6"
+        android:layout_below="@+id/image2"
+        android:paddingTop="24dp"
+        android:paddingLeft="16dp"
+        android:layout_toEndOf="@+id/text6"
+        android:paddingStart="16dp"
+        tools:ignore="RtlSymmetry"/>
+
+    <TextView
+        android:id="@+id/text8"
+        style="@style/BlueTextView"
+        android:text="@string/website"
+        android:layout_toRightOf="@+id/text7"
+        android:layout_below="@+id/image2"
+        android:paddingTop="24dp"
+        android:paddingLeft="16dp"
+        android:layout_toEndOf="@+id/text7"
+        android:paddingStart="16dp"
+        tools:ignore="RtlSymmetry"
+        app:drawableTopCompat="@drawable/ic_baseline_insert_link_24" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider"
+        android:layout_below="@+id/text5">
+    </View>
+
+
+    <ImageView
+        android:id="@+id/image8"
+        style="@style/GraySquare"
+        android:layout_below="@+id/divider"
+        android:layout_width="110dp"
+        android:paddingLeft="10dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/gray_square"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingStart="10dp"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/image9"
+        style="@style/GraySquare"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@+id/image8"
+        android:layout_below="@+id/divider"
+        android:contentDescription="@string/gray_square"
+        android:layout_toRightOf="@+id/image8" />
+
+    <ImageView
+        android:id="@+id/image10"
+        style="@style/GraySquare"
+        android:layout_below="@+id/divider"
+        android:contentDescription="@string/gray_square"
+        android:layout_toEndOf="@+id/image9"
+        android:layout_toRightOf="@+id/image9"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+</RelativeLayout>
