@@ -1,6 +1,6 @@
-package com.example.fourhw
+package com.example.fourhw.observer
 
-import java.util.*
+import java.util.UUID
 
 data class Person(
     val id: String = UUID.randomUUID().toString(),

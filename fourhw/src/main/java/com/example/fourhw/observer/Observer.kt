@@ -1,4 +1,4 @@
-package com.example.fourhw
+package com.example.fourhw.observer
 
 interface Observer {
 

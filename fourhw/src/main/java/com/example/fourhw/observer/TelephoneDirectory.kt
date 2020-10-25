@@ -1,4 +1,4 @@
-package com.example.fourhw
+package com.example.fourhw.observer
 
 object TelephoneDirectory : Observable {
 
@@ -8,7 +8,7 @@ object TelephoneDirectory : Observable {
     var person: Person? = null
         set(value) {
             field = value
-            value?.let {personList.add(it)}
+            value?.let { personList.add(it)}
             sendUpdateEvent()
         }
 }

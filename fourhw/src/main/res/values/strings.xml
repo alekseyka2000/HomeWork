@@ -3,4 +3,7 @@
     <string name="blue_view">Blue view</string>
     <string name="search_contacts">Search contacts</string>
     <string name="no_contacts_please_add">No contacts. Please add</string>
+    <string name="phone_number">Phone number</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
 </resources>
