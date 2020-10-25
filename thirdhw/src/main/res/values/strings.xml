@@ -38,4 +38,10 @@
     <string name="call">Call</string>
     <string name="save">SAVE</string>
     <string name="website">WEBSITE</string>
+    <string name="certificated">Certificated</string>
+    <string name="like">Like</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="share">Share</string>
+    <string name="layouts">Layouts</string>
+    <string name="views">Views</string>
 </resources>
