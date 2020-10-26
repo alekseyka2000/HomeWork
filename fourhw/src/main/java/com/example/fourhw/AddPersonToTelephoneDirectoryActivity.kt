@@ -1,5 +1,6 @@
 package com.example.fourhw
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -25,6 +26,12 @@ class AddPersonToTelephoneDirectoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_person_to_telefone_directory)
 
         setSupportActionBar(toolBar as Toolbar?)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        (toolBar as Toolbar?)?.setNavigationOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
 
         rbg.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {

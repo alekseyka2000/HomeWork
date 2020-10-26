@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,19 +17,19 @@
     <EditText
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
         android:layout_height="40dp"
-        android:text="@string/search_contacts"
-        android:padding="10dp"
-        android:drawablePadding="16dp"
-        android:textSize="14sp"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
-        android:contentDescription="@string/blue_view"
+        android:layout_margin="5dp"
         android:background="@drawable/white_background"
-        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/blue_view"
         android:drawableStart="@drawable/ic_baseline_search_24"
-        android:inputType="textPersonName"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawablePadding="16dp"
         android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="@string/search_contacts"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="LabelFor" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,10 +54,10 @@
         android:id="@+id/buttonAdd"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_margin="24dp"
         android:background="@drawable/add_person_button_background"
         android:drawableBottom="@drawable/ic_baseline_person_add_24"
         android:padding="10dp"
-        android:layout_margin="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
