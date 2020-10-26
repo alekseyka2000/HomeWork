@@ -6,4 +6,7 @@
     <string name="phone_number">Phone number</string>
     <string name="email">Email</string>
     <string name="name">Name</string>
+    <string name="backspace">backspace</string>
+    <string name="check">check</string>
+    <string name="search_hint">search</string>
 </resources>

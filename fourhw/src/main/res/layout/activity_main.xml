@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="56dp"
         android:contentDescription="@string/blue_view"
         android:src="@drawable/blue_background"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,11 +18,12 @@
     <EditText
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="70dp"
+        android:layout_margin="5dp"
+        android:layout_height="40dp"
         android:text="@string/search_contacts"
-        android:padding="16dp"
+        android:padding="10dp"
         android:drawablePadding="16dp"
+        android:textSize="14sp"
         android:drawableLeft="@drawable/ic_baseline_search_24"
         android:contentDescription="@string/blue_view"
         android:background="@drawable/white_background"
