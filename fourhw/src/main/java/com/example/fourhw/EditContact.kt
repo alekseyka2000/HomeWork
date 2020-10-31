@@ -49,7 +49,7 @@ class EditContact : AppCompatActivity() {
                         Toast.makeText(this, "Contact edited", Toast.LENGTH_LONG).show()
                     } else Toast.makeText(this, "Enter Email", Toast.LENGTH_LONG).show()
                 } else {
-                    if (emailEditText.text.toString() != "") {
+                    if (phoneEditText.text.toString() != "") {
                         TelephoneDirectory.personList[index] = Person(contact.id,
                             editTextTextPersonName.text.toString(),
                             true, phoneEditText.text.toString())

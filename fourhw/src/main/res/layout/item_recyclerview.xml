@@ -18,6 +18,7 @@
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/contactTextView"
         app:layout_constraintLeft_toRightOf="@+id/contactImageView"
         app:layout_constraintTop_toTopOf="parent" />

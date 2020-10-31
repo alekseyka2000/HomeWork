@@ -65,7 +65,7 @@ class AddContact : AppCompatActivity() {
                         editTextTextPersonName.text = null
                         emailEditText.text = null
                         phoneEditText.text = null
-                        Toast.makeText(this, "Contact added", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Contact added ", Toast.LENGTH_LONG).show()
                     } else Toast.makeText(this, "Enter phone", Toast.LENGTH_LONG).show()
                 } else Toast.makeText(this, "Enter name", Toast.LENGTH_LONG).show()
             }

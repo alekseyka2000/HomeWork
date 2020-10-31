@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/imageView1"
+        android:id="@+id/searchText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="5dp"
