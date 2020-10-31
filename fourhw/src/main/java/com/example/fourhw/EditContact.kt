@@ -34,10 +34,6 @@ class EditContact : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         (toolBar as Toolbar?)?.setNavigationOnClickListener {
-            finish()
-        }
-
-        buttonRemove.setOnClickListener {
             val index =
                 TelephoneDirectory.personList.indexOfFirst { it.id == intent.getStringExtra("ID") }
             if (editTextTextPersonName.text.toString() != "") {
@@ -52,11 +48,20 @@ class EditContact : AppCompatActivity() {
                     if (phoneEditText.text.toString() != "") {
                         TelephoneDirectory.personList[index] = Person(contact.id,
                             editTextTextPersonName.text.toString(),
-                            true, phoneEditText.text.toString())
+                            false, phoneEditText.text.toString())
                         Toast.makeText(this, "Contact edited", Toast.LENGTH_LONG).show()
                     } else Toast.makeText(this, "Enter phone", Toast.LENGTH_LONG).show()
                 }
             } else Toast.makeText(this, "Enter name", Toast.LENGTH_LONG).show()
+            finish()
+        }
+
+        buttonRemove.setOnClickListener {
+            TelephoneDirectory.personList.removeAt(TelephoneDirectory.personList.indexOfFirst {
+                it.id == intent.getStringExtra("ID")
+            })
+            Toast.makeText(this, "Contact deleted", Toast.LENGTH_LONG).show()
+            finish()
         }
     }
 }

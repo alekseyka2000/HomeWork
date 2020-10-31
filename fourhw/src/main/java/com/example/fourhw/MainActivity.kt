@@ -1,10 +1,12 @@
 package com.example.fourhw
 
 import android.content.Intent
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.buttonAdd
 import kotlinx.android.synthetic.main.activity_main.emptyListText
@@ -49,7 +51,9 @@ class MainActivity : AppCompatActivity(), CellClickListener {
             recyclerView.visibility = View.VISIBLE
             emptyListText.visibility = View.INVISIBLE
             recyclerView.apply {
-                layoutManager = LinearLayoutManager(activity)
+                layoutManager = if (resources.configuration.orientation == ORIENTATION_PORTRAIT)
+                    LinearLayoutManager(activity)
+                else GridLayoutManager(activity, 2)
                 adapter = RecyclerAdapter(listContact, activity)
             }
         } else {
