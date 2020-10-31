@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fourhw.observer.Person
 
-class RecycleAdapter(private val listContacts: List<Person>) :
-    RecyclerView.Adapter<RecycleAdapter.ContactViewHolder>() {
+class RecyclerAdapter(
+    private val listContacts: List<Person>,
+    private val cellClickListener: CellClickListener) :
+    RecyclerView.Adapter<RecyclerAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -17,13 +18,16 @@ class RecycleAdapter(private val listContacts: List<Person>) :
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bind(listContacts[position])
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(listContacts[position].id)
+        }
     }
 
     override fun getItemCount(): Int = listContacts.size
 
     class ContactViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater
-            .inflate(R.layout.item_recycleview, parent, false)) {
+            .inflate(R.layout.item_recyclerview, parent, false)) {
         private var imageView: ImageView? = null
         private var nameText: TextView? = null
         private var contactText: TextView? = null
@@ -34,10 +38,10 @@ class RecycleAdapter(private val listContacts: List<Person>) :
             contactText = itemView.findViewById(R.id.contactTextView)
         }
 
-        fun bind(contact: Person){
-            if (contact.typeContact){
+        fun bind(contact: Person) {
+            if (contact.typeContact) {
                 imageView?.setImageResource(R.drawable.ic_baseline_contact_mail_24)
-            } else{
+            } else {
                 imageView?.setImageResource(R.drawable.ic_baseline_contact_phone_24)
             }
             contactText?.text = contact.contact

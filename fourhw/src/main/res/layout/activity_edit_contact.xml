@@ -4,34 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AddPersonToTelephoneDirectoryActivity">
+    tools:context=".EditContact">
 
     <include
         android:id="@+id/toolBar"
-        layout="@layout/tool_bar_with_button" />
-
-    <RadioGroup
-        android:id="@+id/rbg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar">
-
-        <RadioButton
-            android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/phone_number"/>
-
-        <RadioButton
-            android:id="@+id/radio2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/email"/>
-    </RadioGroup>
+        layout="@layout/tool_bar_with_button"/>
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -41,7 +18,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:hint="@string/name"
-        app:layout_constraintTop_toBottomOf="@+id/rbg" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -65,5 +42,20 @@
         android:hint="@string/phone_number"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/buttonRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/remote_button_background"
+        android:text="@string/remove"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

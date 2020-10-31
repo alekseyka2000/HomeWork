@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".AddPersonToTelephoneDirectoryActivity"
-            android:theme="@style/AppThemeWithButtonActionBar"/>
+        <activity android:name=".EditContact" />
+        <activity
+            android:name=".AddContact"
+            android:theme="@style/AppThemeWithButtonActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

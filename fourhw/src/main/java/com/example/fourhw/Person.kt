@@ -1,4 +1,4 @@
-package com.example.fourhw.observer
+package com.example.fourhw
 
 data class Person(
     val id: String,
