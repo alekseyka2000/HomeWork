@@ -25,6 +25,7 @@ class CustomViewForGame @JvmOverloads constructor(
     private var right: Float = 0f
     private var top: Float = 0f
     private var bottom: Float = 0f
+    private var snackbar = false
     private val colors = listOf(
         Color.YELLOW,
         Color.BLUE,
@@ -105,7 +106,9 @@ class CustomViewForGame @JvmOverloads constructor(
             add(newColor)
         }
         paint.color = colors[newColor]
-        Snackbar.make(this, "You push sector", Snackbar.LENGTH_SHORT).show()
+        if (snackbar) Snackbar.make(this, "You push sector", Snackbar.LENGTH_SHORT)
+            .setTextColor(colors[oldColor]).show()
+        else Snackbar.make(this, "You push sector", Snackbar.LENGTH_SHORT).show()
         invalidate()
     }
 
@@ -125,5 +128,9 @@ class CustomViewForGame @JvmOverloads constructor(
         paint4.color = colors[useColorsList[3]]
         Snackbar.make(this, "You push center", Snackbar.LENGTH_SHORT).show()
         invalidate()
+    }
+
+    fun setSnackbarColor() {
+        snackbar = snackbar.not()
     }
 }
