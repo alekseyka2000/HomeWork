@@ -2,7 +2,8 @@ package com.example.fourpointtwo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.switchColor
+import kotlinx.android.synthetic.main.activity_main.customView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

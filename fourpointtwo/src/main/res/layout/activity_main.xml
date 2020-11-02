@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/snackbar_color_switch"/>
 
     <com.example.fourpointtwo.CustomViewForGame
         android:id="@+id/customView"

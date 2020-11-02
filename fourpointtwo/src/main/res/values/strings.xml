@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FourPointTwo</string>
+    <string name="snackbar_color_switch">Snackbar color switch</string>
+    <string name="push_center">You push center</string>
+    <string name="push_sector">You push sector</string>
 </resources>

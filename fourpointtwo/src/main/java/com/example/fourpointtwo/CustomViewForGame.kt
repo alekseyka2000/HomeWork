@@ -106,9 +106,9 @@ class CustomViewForGame @JvmOverloads constructor(
             add(newColor)
         }
         paint.color = colors[newColor]
-        if (snackbar) Snackbar.make(this, "You push sector", Snackbar.LENGTH_SHORT)
+        if (snackbar) Snackbar.make(this, context.getString(R.string.push_sector), Snackbar.LENGTH_SHORT)
             .setTextColor(colors[oldColor]).show()
-        else Snackbar.make(this, "You push sector", Snackbar.LENGTH_SHORT).show()
+        else Snackbar.make(this, context.getString(R.string.push_sector), Snackbar.LENGTH_SHORT).show()
         invalidate()
     }
 
@@ -126,7 +126,7 @@ class CustomViewForGame @JvmOverloads constructor(
         paint2.color = colors[useColorsList[1]]
         paint3.color = colors[useColorsList[2]]
         paint4.color = colors[useColorsList[3]]
-        Snackbar.make(this, "You push center", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(this, context.getString(R.string.push_center), Snackbar.LENGTH_SHORT).show()
         invalidate()
     }
 
