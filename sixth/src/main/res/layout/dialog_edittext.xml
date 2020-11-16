@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="32dp"
+        android:autofillHints="15"
+        android:background="@drawable/edittext_background"
+        android:hint="@string/enter_new_file_name"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+</FrameLayout>
