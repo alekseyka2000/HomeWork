@@ -6,4 +6,6 @@
     <string name="positive_button_text">CREATE FILE</string>
     <string name="negative_button_text">BACK</string>
     <string name="enter_new_file_name">Enter new file name here</string>
+    <string name="resume">Resume</string>
+    <string name="enter_file_text">Enter file text</string>
 </resources>

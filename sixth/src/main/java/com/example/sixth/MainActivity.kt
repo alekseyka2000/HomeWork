@@ -1,22 +1,27 @@
 package com.example.sixth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sixth.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.concurrent.CompletableFuture
 
 class MainActivity : AppCompatActivity(), CellClickListener {
 
     private lateinit var binding: ActivityMainBinding
-    val fileList = mutableListOf<String>()
+    var fileList = listOf<String>()
 
+    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -27,21 +32,43 @@ class MainActivity : AppCompatActivity(), CellClickListener {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
-        val dialogEditText = this.layoutInflater.inflate(R.layout.dialog_edittext, null)
+        try {
+            CompletableFuture.supplyAsync {
+                StorageManager().getFileList(this@MainActivity)
+            }.thenApplyAsync { result ->
+                fileList = result
+                binding.fileList.adapter?.notifyDataSetChanged()
+            }.thenRunAsync(Runnable { }, mainExecutor)
+        } catch (e: Exception) {
+            Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+        }
+
         binding.addFileButton.setOnClickListener {
             MaterialAlertDialogBuilder(this@MainActivity, R.style.AppTheme)
                 .setTitle(resources.getString(R.string.add_file))
                 .setMessage(resources.getString(R.string.add_file))
-                .setView(dialogEditText)
-                .setPositiveButton(resources.getString(R.string.positive_button_text)) { _, _ ->
-                    Toast.makeText(this@MainActivity, "File was created", Toast.LENGTH_SHORT).show()
+                .setView(this.layoutInflater.inflate(R.layout.dialog_edittext, null))
+                .setPositiveButton(resources.getString(R.string.positive_button_text)) { dialog, _ ->
+                    try {
+                        CompletableFuture.supplyAsync {
+                            StorageManager().run {
+                                val et =
+                                    (dialog as? AlertDialog)?.findViewById<EditText>(R.id.fileName)
+                                val fileName = et?.text.toString()
+                                createFileInInternalStorage(fileName, this@MainActivity)
+                                getFileList(this@MainActivity)
+                            }
+                        }.thenApplyAsync { result ->
+                            fileList = result
+                            binding.fileList.adapter?.notifyDataSetChanged()
+                        }
+                            .thenRunAsync(Runnable { }, mainExecutor)
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                .setNegativeButton(resources.getString(R.string.negative_button_text)) { _, _ ->
-                    Toast.makeText(
-                        this@MainActivity,
-                        "File creation was canceled",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                .setNegativeButton(resources.getString(R.string.negative_button_text)) { dialog, _ ->
+                    dialog.cancel()
                 }
                 .create()
                 .show()
@@ -49,7 +76,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
     }
 
     override fun onCellClickListener(name: String) {
-        Toast.makeText(this, "file $name was clicked", Toast.LENGTH_SHORT).show()
+        startActivity(FileTextActivity.getIntent(this, name))
     }
 
     inner class FileListAdapter : RecyclerView.Adapter<FileListAdapter.FileViewHolder>() {
@@ -73,9 +100,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         }
 
         inner class FileViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
             private val fileName = view.findViewById<TextView>(R.id.fileName)
-
             fun bind(file: String) {
                 fileName.text = file
             }
