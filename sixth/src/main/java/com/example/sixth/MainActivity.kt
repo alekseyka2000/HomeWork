@@ -1,6 +1,8 @@
 package com.example.sixth
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
 
     private lateinit var binding: ActivityMainBinding
     var fileList = listOf<String>()
+    private var externalStorageIsOn = false
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +35,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
-        try {
-            CompletableFuture.supplyAsync {
-                StorageManager().getFileList(this@MainActivity)
-            }.thenApplyAsync { result ->
-                fileList = result
-                binding.fileList.adapter?.notifyDataSetChanged()
-            }.thenRunAsync(Runnable { }, mainExecutor)
-        } catch (e: Exception) {
-            Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
-        }
+        getFileList()
 
         binding.addFileButton.setOnClickListener {
             MaterialAlertDialogBuilder(this@MainActivity, R.style.AppTheme)
@@ -55,17 +49,13 @@ class MainActivity : AppCompatActivity(), CellClickListener {
                                 val et =
                                     (dialog as? AlertDialog)?.findViewById<EditText>(R.id.fileName)
                                 val fileName = et?.text.toString()
-                                createFileInInternalStorage(fileName, this@MainActivity)
-                                getFileList(this@MainActivity)
+                                createFileInStorage(fileName, this@MainActivity, externalStorageIsOn)
                             }
-                        }.thenApplyAsync { result ->
-                            fileList = result
-                            binding.fileList.adapter?.notifyDataSetChanged()
                         }
-                            .thenRunAsync(Runnable { }, mainExecutor)
                     } catch (e: Exception) {
                         Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
                     }
+                    getFileList()
                 }
                 .setNegativeButton(resources.getString(R.string.negative_button_text)) { dialog, _ ->
                     dialog.cancel()
@@ -73,10 +63,54 @@ class MainActivity : AppCompatActivity(), CellClickListener {
                 .create()
                 .show()
         }
+        binding.settingsButton.setOnClickListener {
+            startActivityForResult(
+                SettingActivity.getIntent(this, externalStorageIsOn),
+                requestCode
+            )
+        }
+    }
+
+    private fun getFileList() {
+        try {
+            if (externalStorageIsOn){
+                CompletableFuture.supplyAsync {
+                    StorageManager().getFileListFromExternal(this@MainActivity)
+                }.thenApplyAsync { result ->
+                    fileList = result
+                }.thenRunAsync(Runnable { }, mainExecutor)
+            }else{
+                CompletableFuture.supplyAsync {
+                    StorageManager().getFileList(this@MainActivity)
+                }.thenApplyAsync { result ->
+                    fileList = result
+                }.thenRunAsync(Runnable { }, mainExecutor)
+            }
+            binding.fileList.adapter?.notifyDataSetChanged()
+        } catch (e: Exception) {
+            Toast.makeText(this@MainActivity, "file error", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        when (requestCode) {
+            requestCode -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.let {
+                        externalStorageIsOn = it.getBooleanExtra("Result", false)
+                    }
+                    getFileList()
+                } else Toast.makeText(this, "You didn't get setting", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
     }
 
     override fun onCellClickListener(name: String) {
-        startActivity(FileTextActivity.getIntent(this, name))
+        startActivity(FileTextActivity.getIntent(this, name, externalStorageIsOn))
     }
 
     inner class FileListAdapter : RecyclerView.Adapter<FileListAdapter.FileViewHolder>() {
@@ -105,5 +139,9 @@ class MainActivity : AppCompatActivity(), CellClickListener {
                 fileName.text = file
             }
         }
+    }
+
+    companion object {
+        val requestCode = 1000
     }
 }

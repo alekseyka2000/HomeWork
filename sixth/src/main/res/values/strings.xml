@@ -8,4 +8,6 @@
     <string name="enter_new_file_name">Enter new file name here</string>
     <string name="resume">Resume</string>
     <string name="enter_file_text">Enter file text</string>
+    <string name="storage_type">External storage</string>
+    <string name="apply">Apply</string>
 </resources>

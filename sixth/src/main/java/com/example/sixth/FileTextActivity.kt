@@ -19,38 +19,66 @@ class FileTextActivity : AppCompatActivity() {
         binding = ActivityFileTextBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val nameFile = intent.getStringExtra(KEY)!!
-        try {
-            CompletableFuture.supplyAsync {
-                StorageManager().getFileBody(this@FileTextActivity, nameFile)
-            }.thenApplyAsync { res ->
-                binding.fileText.setText(res, TextView.BufferType.EDITABLE)
-            }.thenRunAsync(Runnable {}, mainExecutor)
-        } catch (e: Exception) {
-            Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+        val storage = intent.getBooleanExtra(storageKey, false)
+        if (storage) {
+            try {
+                CompletableFuture.supplyAsync {
+                    StorageManager().getExternalFileBody(this@FileTextActivity, nameFile)
+                }.thenApplyAsync { res ->
+                    binding.fileText.setText(res, TextView.BufferType.EDITABLE)
+                }.thenRunAsync(Runnable {}, mainExecutor)
+            } catch (e: Exception) {
+                Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            try {
+                CompletableFuture.supplyAsync {
+                    StorageManager().getFileBody(this@FileTextActivity, nameFile)
+                }.thenApplyAsync { res ->
+                    binding.fileText.setText(res, TextView.BufferType.EDITABLE)
+                }.thenRunAsync(Runnable {}, mainExecutor)
+            } catch (e: Exception) {
+                Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.resumeButton.setOnClickListener {
-            try {
-                StorageManager().setFileBody(
-                    this@FileTextActivity,
-                    nameFile,
-                    binding.fileText.text.toString()
-                )
-                finish()
-            } catch (e: Exception) {
-                Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+            if (storage) {
+                try {
+                    StorageManager().setExternalFileBody(
+                        this@FileTextActivity,
+                        nameFile,
+                        binding.fileText.text.toString()
+                    )
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                try {
+                    StorageManager().setFileBody(
+                        this@FileTextActivity,
+                        nameFile,
+                        binding.fileText.text.toString()
+                    )
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "file error", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
     companion object {
         private const val KEY = "FileName"
+        private const val storageKey = "Storage"
 
         @JvmStatic
-        fun getIntent(context: Context, extra: String) =
+        fun getIntent(context: Context, extra: String, storageExtra: Boolean) =
             Intent(context, FileTextActivity::class.java)
                 .apply {
                     putExtra(KEY, extra)
+                    putExtra(storageKey, storageExtra)
                 }
     }
 }

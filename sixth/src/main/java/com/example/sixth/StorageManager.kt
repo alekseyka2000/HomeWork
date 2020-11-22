@@ -4,21 +4,33 @@ import android.content.Context
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.util.concurrent.CompletableFuture
 
 class StorageManager {
 
     fun getFileList(context: Context): List<String> {
         val list = mutableListOf<String>()
-        CompletableFuture.runAsync {
-            context.dataDir.listFiles()?.forEach { list.add(it.name) }
-        }
+        context.dataDir.listFiles()?.forEach { list.add(it.name) }
+        return list
+    }
+
+    fun getFileListFromExternal(context: Context): List<String> {
+        val list = mutableListOf<String>()
+        context.getExternalFilesDir(context.packageName)?.listFiles()?.forEach { list.add(it.name) }
         return list
     }
 
     fun getFileBody(context: Context, name: String): String {
         var textFile = ""
-        FileInputStream(File(context.dataDir, name)).bufferedReader()
+        FileInputStream(File(context.dataDir, name))
+            .bufferedReader()
+            .use { textFile = it.readText() }
+        return textFile
+    }
+
+    fun getExternalFileBody(context: Context, name: String): String {
+        var textFile = ""
+        FileInputStream(File(context.getExternalFilesDir(context.packageName), name))
+            .bufferedReader()
             .use { textFile = it.readText() }
         return textFile
     }
@@ -27,11 +39,16 @@ class StorageManager {
         FileOutputStream(File(context.dataDir, name)).writer().use { it.append(text) }
     }
 
-    fun createFileInInternalStorage(name: String, context: Context) {
-        File(context.dataDir, "$name.txt").createNewFile()
+    fun setExternalFileBody(context: Context, name: String, text: String) {
+        FileOutputStream(File(context.getExternalFilesDir(context.packageName), name)).writer()
+            .use { it.append(text) }
     }
 
-    fun createFileInExternalStorage(name: String, context: Context) {
-        File(context.getExternalFilesDir(null), "$name.txt")
+    fun createFileInStorage(name: String, context: Context, storage: Boolean) {
+        if (storage) File(
+            context.getExternalFilesDir(context.packageName),
+            "$name.txt"
+        ).createNewFile()
+        else File(context.dataDir, "$name.txt").createNewFile()
     }
 }

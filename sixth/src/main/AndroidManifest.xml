@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sixth">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeWork"
         tools:ignore="AllowBackup">
+        <activity android:name=".SettingActivity" />
         <activity android:name=".FileTextActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
