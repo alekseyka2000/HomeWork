@@ -4,12 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.properties.Delegates
 
-class RecyclerAdapter(
-    private val listContacts: List<Person>,
-    private val cellClickListener: CellClickListener) :
+class RecyclerAdapter(private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<RecyclerAdapter.ContactViewHolder>() {
+
+    var listContacts: List<Person> by Delegates.observable(emptyList()){
+        _, oldValue, newValue ->
+        notifyChanges(oldValue, newValue)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -48,4 +53,22 @@ class RecyclerAdapter(
             nameText?.text = contact.name
         }
     }
+
+    private fun notifyChanges(oldList: List<Person>, newList: List<Person>) {
+        val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition].id == newList[newItemPosition].id
+            }
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldList[oldItemPosition] == newList[newItemPosition]
+            }
+            override fun getOldListSize() = oldList.size
+            override fun getNewListSize() = newList.size
+        })
+        diff.dispatchUpdatesTo(this)
+    }
+}
+
+interface CellClickListener {
+    fun onCellClickListener(id: String)
 }

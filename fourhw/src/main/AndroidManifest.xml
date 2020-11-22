@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".EditContact" />
+        <activity android:name=".EditContactActivity" />
         <activity
-            android:name=".AddContact"
+            android:name=".AddContactActivity"
             android:theme="@style/AppThemeWithButtonActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>

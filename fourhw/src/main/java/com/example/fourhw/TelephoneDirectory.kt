@@ -1,5 +1,6 @@
 package com.example.fourhw
 
+import android.content.Intent
 import java.util.UUID
 
 object TelephoneDirectory {
@@ -51,5 +52,13 @@ object TelephoneDirectory {
         personList.add(person)
     }
 
+    fun findContact(intent: Intent): Person =
+        personList.first { it.id == intent.getStringExtra("ID") }
 
+    fun getIndex(intent: Intent): Int =
+        personList.indexOfFirst { it.id == intent.getStringExtra("ID") }
+
+    fun deleteContact(intent: Intent) {
+        personList.removeAt(getIndex(intent))
+    }
 }
