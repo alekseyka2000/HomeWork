@@ -12,17 +12,19 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sixth.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.CompletableFuture
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(), CellClickListener {
 
     private lateinit var binding: ActivityMainBinding
-    var fileList = listOf<String>()
     private var externalStorageIsOn = false
+    val fileAdapter = FileListAdapter()
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         setContentView(binding.root)
 
         binding.fileList.apply {
-            adapter = FileListAdapter()
+            adapter = fileAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
@@ -77,13 +79,13 @@ class MainActivity : AppCompatActivity(), CellClickListener {
                 CompletableFuture.supplyAsync {
                     StorageManager().getFileListFromExternal(this@MainActivity)
                 }.thenApplyAsync { result ->
-                    fileList = result
+                    fileAdapter.fileList = result
                 }.thenRunAsync(Runnable { }, mainExecutor)
             }else{
                 CompletableFuture.supplyAsync {
                     StorageManager().getFileList(this@MainActivity)
                 }.thenApplyAsync { result ->
-                    fileList = result
+                    fileAdapter.fileList = result
                 }.thenRunAsync(Runnable { }, mainExecutor)
             }
             binding.fileList.adapter?.notifyDataSetChanged()
@@ -115,6 +117,11 @@ class MainActivity : AppCompatActivity(), CellClickListener {
 
     inner class FileListAdapter : RecyclerView.Adapter<FileListAdapter.FileViewHolder>() {
 
+        var fileList : List<String> by Delegates.observable(emptyList()){
+                _, oldValue, newValue ->
+            notifyChanges(oldValue, newValue)
+        }
+
         override fun getItemCount(): Int {
             return fileList.size
         }
@@ -138,6 +145,20 @@ class MainActivity : AppCompatActivity(), CellClickListener {
             fun bind(file: String) {
                 fileName.text = file
             }
+        }
+
+        private fun notifyChanges(oldList: List<String>, newList: List<String>) {
+            val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return oldList[oldItemPosition] == newList[newItemPosition]
+                }
+                override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return oldList[oldItemPosition] == newList[newItemPosition]
+                }
+                override fun getOldListSize() = oldList.size
+                override fun getNewListSize() = newList.size
+            })
+            diff.dispatchUpdatesTo(this)
         }
     }
 
