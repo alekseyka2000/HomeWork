@@ -13,7 +13,7 @@ class RecyclerAdapter(private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<RecyclerAdapter.ContactViewHolder>() {
 
     var listContacts: List<Contact> by Delegates.observable(emptyList()){
-        _, oldValue, newValue ->
+            _, oldValue, newValue ->
         notifyChanges(oldValue, newValue)
     }
 

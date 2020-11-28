@@ -2,17 +2,11 @@ package com.example.seventh
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Update
-import com.example.seventh.DB.UpdateList
-import kotlinx.android.synthetic.main.activity_main.buttonAdd
-import kotlinx.android.synthetic.main.activity_main.emptyListText
-import kotlinx.android.synthetic.main.activity_main.recyclerView
-import kotlinx.android.synthetic.main.activity_main.searchText
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CellClickListener {
 
@@ -22,25 +16,17 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TelephoneDirectory.openDB(this)
+        TelephoneDirectory.openDB(this, contactAdapter)
 
         buttonAdd.setOnClickListener {
             startActivity(AddContactActivity.getIntent(this))
         }
 
-        if (TelephoneDirectory.personList.isNotEmpty()) {
-            recyclerView.visibility = View.VISIBLE
-            emptyListText.visibility = View.INVISIBLE
-            recyclerView.apply {
-                layoutManager = if (resources.configuration.orientation == ORIENTATION_PORTRAIT)
-                    LinearLayoutManager(this@MainActivity)
-                else GridLayoutManager(this@MainActivity, 2)
-                adapter = contactAdapter
-            }
-            contactAdapter.listContacts = TelephoneDirectory.personList
-        } else {
-            recyclerView.visibility = View.INVISIBLE
-            emptyListText.visibility = View.VISIBLE
+        recyclerView.apply {
+            layoutManager = if (resources.configuration.orientation == ORIENTATION_PORTRAIT)
+                LinearLayoutManager(this@MainActivity)
+            else GridLayoutManager(this@MainActivity, 2)
+            adapter = contactAdapter
         }
 
         searchText.doAfterTextChanged {
@@ -60,10 +46,4 @@ class MainActivity : AppCompatActivity(), CellClickListener {
     override fun onCellClickListener(id: String) {
         startActivity(EditContactActivity.getIntent(this, id))
     }
-
-//    companion object{
-//        fun updateList(){
-//        contactAdapter.listContacts = TelephoneDirectory.personList
-//        }
-//    }
 }

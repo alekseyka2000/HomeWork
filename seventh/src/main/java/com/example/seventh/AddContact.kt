@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_add_contact.contactEditText
 import kotlinx.android.synthetic.main.activity_add_contact.editTextTextPersonName
 import kotlinx.android.synthetic.main.activity_add_contact.rbg
 import kotlinx.android.synthetic.main.activity_add_contact.toolBar
+import kotlinx.android.synthetic.main.activity_add_contact.radio2
 import java.util.UUID
 
 class AddContactActivity : AppCompatActivity() {
@@ -61,7 +62,7 @@ class AddContactActivity : AppCompatActivity() {
                 if (contactEditText.text.toString().isNotEmpty()) {
                     TelephoneDirectory.addContact(Contact(UUID.randomUUID().toString(),
                         editTextTextPersonName.text.toString(),
-                        false,
+                        radio2.isChecked,
                         contactEditText.text.toString()))
                     editTextTextPersonName.text = null
                     contactEditText.text = null
