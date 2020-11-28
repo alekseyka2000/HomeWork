@@ -6,12 +6,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.seventh.DB.Contact
 import kotlin.properties.Delegates
 
 class RecyclerAdapter(private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<RecyclerAdapter.ContactViewHolder>() {
 
-    var listContacts: List<Person> by Delegates.observable(emptyList()){
+    var listContacts: List<Contact> by Delegates.observable(emptyList()){
         _, oldValue, newValue ->
         notifyChanges(oldValue, newValue)
     }
@@ -43,8 +44,8 @@ class RecyclerAdapter(private val cellClickListener: CellClickListener) :
             contactText = itemView.findViewById(R.id.contactTextView)
         }
 
-        fun bind(contact: Person) {
-            if (contact.typeContact) {
+        fun bind(contact: Contact) {
+            if (contact.contactType) {
                 imageView?.setImageResource(R.drawable.ic_baseline_contact_mail_24)
             } else {
                 imageView?.setImageResource(R.drawable.ic_baseline_contact_phone_24)
@@ -54,7 +55,7 @@ class RecyclerAdapter(private val cellClickListener: CellClickListener) :
         }
     }
 
-    private fun notifyChanges(oldList: List<Person>, newList: List<Person>) {
+    private fun notifyChanges(oldList: List<Contact>, newList: List<Contact>) {
         val diff = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
                 return oldList[oldItemPosition].id == newList[newItemPosition].id

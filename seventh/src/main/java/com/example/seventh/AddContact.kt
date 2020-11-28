@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.seventh.DB.Contact
 import kotlinx.android.synthetic.main.activity_add_contact.contactEditText
 import kotlinx.android.synthetic.main.activity_add_contact.editTextTextPersonName
 import kotlinx.android.synthetic.main.activity_add_contact.rbg
@@ -21,13 +22,13 @@ class AddContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_contact)
 
-        setSupportActionBar(toolBar as Toolbar?)
+        setSupportActionBar(toolBar as Toolbar)
         supportActionBar?.apply {
             title = resources.getString(R.string.title_add_contact)
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        (toolBar as Toolbar?)?.setNavigationOnClickListener {
+        (toolBar as Toolbar).setNavigationOnClickListener {
             finish()
         }
 
@@ -58,7 +59,7 @@ class AddContactActivity : AppCompatActivity() {
         if (item.itemId == R.id.action_check) {
             if (editTextTextPersonName.text.toString().isNotEmpty()) {
                 if (contactEditText.text.toString().isNotEmpty()) {
-                    TelephoneDirectory.addContact(Person(UUID.randomUUID().toString(),
+                    TelephoneDirectory.addContact(Contact(UUID.randomUUID().toString(),
                         editTextTextPersonName.text.toString(),
                         false,
                         contactEditText.text.toString()))

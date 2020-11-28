@@ -1,64 +1,57 @@
 package com.example.seventh
 
+import android.content.Context
 import android.content.Intent
-import java.util.UUID
+import com.example.seventh.DB.Contact
+import com.example.seventh.DB.ContactDAO
+import com.example.seventh.DB.ContactDB
+import kotlinx.android.synthetic.main.activity_add_contact.*
+import java.util.*
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 object TelephoneDirectory {
 
-    var personList = mutableListOf<Person>()
+    private lateinit var dataBase: ContactDAO
 
-    init {
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vasya",
-            false,
-            "+37529***"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vova",
-            false,
-            "+37533**"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Lena",
-            true,
-            "lena@gmail.com"))
+    var personList = listOf( Contact(
+    UUID.randomUUID().toString(),
+    "PersonName",
+    false,
+    "contactEditText"))//listOf<Contact>()
+    private val poolExecutors = Executors.newFixedThreadPool(5)
+    private lateinit var mainExecutor: Executor
 
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vasya",
-            false,
-            "+37529***"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vova",
-            false,
-            "+37533**"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Lena",
-            true,
-            "lena@gmail.com"))
-
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vasya",
-            false,
-            "+37529***"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Vova",
-            false,
-            "+37533**"))
-        addContact(Person(UUID.randomUUID().toString(),
-            "Lena",
-            true,
-            "lena@gmail.com"))
+    fun openDB(context: Context) {
+        dataBase = ContactDB.getDB(context).contactDAO()
+        mainExecutor = context.mainExecutor
+        getContactList()
     }
 
-    fun addContact(person: Person) {
-        personList.add(person)
+    fun addContact(contact: Contact) {
+        CompletableFuture.runAsync { dataBase.insertContact(contact) }
+        getContactList()
     }
 
-    fun findContact(intent: Intent): Person =
-        personList.first { it.id == intent.getStringExtra("ID") }
+    private fun getContactList() {
+        CompletableFuture.supplyAsync {
+            dataBase.getContactsList()
+        }.thenApplyAsync { result ->
+            personList = result
+        }.thenRunAsync(Runnable { }, mainExecutor)
+    }
 
-    fun getIndex(intent: Intent): Int =
-        personList.indexOfFirst { it.id == intent.getStringExtra("ID") }
+    fun findContact(intent: Intent): Contact =
+       personList.first { it.id == intent.getStringExtra("ID") }
 
     fun deleteContact(intent: Intent) {
-        personList.removeAt(getIndex(intent))
+//        CompletableFuture.runAsync({ dataBase.deleteContact(findContact(intent)) }, poolExecutors)
+//            .thenRunAsync({ getContactList() }, mainExecutor)
+    }
+
+    fun editContact(oldContact: Contact, newContact: Contact) {
+//        CompletableFuture.runAsync({ dataBase.editContact(oldContact, newContact) }, poolExecutors)
+//            .thenRunAsync({ getContactList() }, mainExecutor)
     }
 }

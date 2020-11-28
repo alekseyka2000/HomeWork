@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Update
+import com.example.seventh.DB.UpdateList
 import kotlinx.android.synthetic.main.activity_main.buttonAdd
 import kotlinx.android.synthetic.main.activity_main.emptyListText
 import kotlinx.android.synthetic.main.activity_main.recyclerView
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity(), CellClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        TelephoneDirectory.openDB(this)
 
         buttonAdd.setOnClickListener {
             startActivity(AddContactActivity.getIntent(this))
@@ -41,11 +45,10 @@ class MainActivity : AppCompatActivity(), CellClickListener {
 
         searchText.doAfterTextChanged {
             val subtext = it.toString()
-            val searchList = TelephoneDirectory.personList.filter { list ->
+            contactAdapter.listContacts = TelephoneDirectory.personList.filter { list ->
                 list.name.contains(subtext, true)
                     .or(list.contact.contains(subtext, true))
             }
-            contactAdapter.listContacts = searchList
         }
     }
 
@@ -57,4 +60,10 @@ class MainActivity : AppCompatActivity(), CellClickListener {
     override fun onCellClickListener(id: String) {
         startActivity(EditContactActivity.getIntent(this, id))
     }
+
+//    companion object{
+//        fun updateList(){
+//        contactAdapter.listContacts = TelephoneDirectory.personList
+//        }
+//    }
 }
