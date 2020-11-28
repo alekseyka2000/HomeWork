@@ -21,13 +21,13 @@ class AddContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_contact)
 
-        setSupportActionBar(toolBar as Toolbar?)
+        setSupportActionBar(toolBar as Toolbar)
         supportActionBar?.apply {
             title = resources.getString(R.string.title_add_contact)
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        (toolBar as Toolbar?)?.setNavigationOnClickListener {
+        (toolBar as Toolbar).setNavigationOnClickListener {
             finish()
         }
 

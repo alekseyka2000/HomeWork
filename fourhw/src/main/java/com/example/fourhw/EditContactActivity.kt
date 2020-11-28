@@ -21,13 +21,13 @@ class EditContactActivity : AppCompatActivity() {
         editTextTextPersonName.setText(contact.name, TextView.BufferType.EDITABLE)
         contactEditText.setText(contact.contact, TextView.BufferType.EDITABLE)
 
-        setSupportActionBar(toolBar as Toolbar?)
+        setSupportActionBar(toolBar as Toolbar)
         supportActionBar?.apply {
             title = resources.getString(R.string.title_edit_contact)
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        (toolBar as Toolbar?)?.setNavigationOnClickListener {
+        (toolBar as Toolbar).setNavigationOnClickListener {
             val index = TelephoneDirectory.getIndex(intent)
             if (editTextTextPersonName.text.toString().isNotEmpty()) {
                 if (contactEditText.text.toString().isNotEmpty()) {
@@ -57,10 +57,8 @@ class EditContactActivity : AppCompatActivity() {
         private const val ID_KEY = "ID"
 
         @JvmStatic
-        fun getIntent(context: Context, extraId: String): Intent {
-            val newIntent = Intent(context, EditContactActivity::class.java)
-            newIntent.putExtra(ID_KEY, extraId)
-            return newIntent
-        }
+        fun getIntent(context: Context, extraId: String) =
+            Intent(context, EditContactActivity::class.java)
+            .putExtra(ID_KEY, extraId)
     }
 }
