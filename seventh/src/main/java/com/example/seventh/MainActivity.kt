@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TelephoneDirectory.openDB(this, contactAdapter)
+        TelephoneDirectory.openDB(this, contactAdapter, this.recyclerView)
 
         buttonAdd.setOnClickListener {
             startActivity(AddContactActivity.getIntent(this))
