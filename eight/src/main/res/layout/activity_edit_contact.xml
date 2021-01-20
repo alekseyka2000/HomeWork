@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditContactActivity">
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/tool_bar_with_button"/>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
+    <EditText
+        android:id="@+id/contactEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:hint="@string/phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/buttonRemove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/remote_button_background"
+        android:text="@string/remove"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

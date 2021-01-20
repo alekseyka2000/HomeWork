@@ -1,2 +1,3 @@
+include ':eight'
 include ':app'
 rootProject.name = "Home Work"
