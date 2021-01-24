@@ -1,5 +1,5 @@
 package com.example.nine_mvm.domain
 
-class ForecastDataConverter {
-
+interface ForecastDataConverter {
+    fun getForecastData(city: String)
 }

@@ -1,6 +1,7 @@
 package com.example.nine_mvm
 
 import android.app.Application
+import com.example.nine_mvm.di.domainModule
 import com.example.nine_mvm.di.modelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +18,7 @@ class App: Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(modelModule)
+            modules(modelModule, domainModule)
         }
     }
 }
