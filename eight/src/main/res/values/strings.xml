@@ -18,4 +18,8 @@
     <string name="remove">Remove</string>
     <string name="title_edit_contact">Edit contact</string>
     <string name="title_add_contact">Add contact</string>
+    <string name="type_concurrent">Type concurrent</string>
+    <string name="completable_future">CompletableFuture</string>
+    <string name="rxjava">RXJava</string>
+    <string name="handler">Handler</string>
 </resources>

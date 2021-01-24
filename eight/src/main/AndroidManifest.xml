@@ -4,6 +4,7 @@
     package="com.example.eight">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeWork"
         tools:ignore="AllowBackup">
-        <activity android:name=".EditContactActivity" />
+        <activity android:name=".view.edit.EditContactActivity" />
         <activity
-            android:name=".AddContactActivity"
+            android:name=".view.add.AddContactActivity"
             android:theme="@style/AppThemeWithButtonActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.list.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

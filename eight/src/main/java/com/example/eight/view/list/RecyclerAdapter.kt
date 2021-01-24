@@ -1,4 +1,4 @@
-package com.example.eight
+package com.example.eight.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eight.db.Contact
+import com.example.eight.R
+import com.example.eight.model.db.Contact
 import kotlin.properties.Delegates
 
 class RecyclerAdapter(private val cellClickListener: CellClickListener) :
@@ -25,7 +26,7 @@ class RecyclerAdapter(private val cellClickListener: CellClickListener) :
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bind(listContacts[position])
         holder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener(listContacts[position].id)
+            cellClickListener.onCellClickListener(listContacts[position])
         }
     }
 
@@ -71,5 +72,5 @@ class RecyclerAdapter(private val cellClickListener: CellClickListener) :
 }
 
 interface CellClickListener {
-    fun onCellClickListener(id: String)
+    fun onCellClickListener(contact: Contact)
 }

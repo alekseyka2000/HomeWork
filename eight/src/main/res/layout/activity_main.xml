@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.list.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,21 +23,52 @@
         android:contentDescription="@string/blue_view"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawablePadding="16dp"
+        android:hint="@string/search_contacts"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:hint="@string/search_contacts"
         android:textSize="14sp"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,LabelFor" />
 
+    <RadioGroup
+        android:id="@+id/mainRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/completableFuture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/completable_future"
+            android:layout_weight="1" />
+        <RadioButton
+            android:id="@+id/rxjava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rxjava"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/handler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/handler"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainRadioGroup" />
 
     <Button
         android:id="@+id/buttonAdd"

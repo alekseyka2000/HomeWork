@@ -1,4 +1,4 @@
-package com.example.eight
+package com.example.eight.view.add
 
 import android.content.Context
 import android.content.Intent
@@ -9,15 +9,15 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.eight.db.Contact
-import kotlinx.android.synthetic.main.activity_add_contact.contactEditText
-import kotlinx.android.synthetic.main.activity_add_contact.editTextTextPersonName
-import kotlinx.android.synthetic.main.activity_add_contact.rbg
-import kotlinx.android.synthetic.main.activity_add_contact.toolBar
-import kotlinx.android.synthetic.main.activity_add_contact.radio2
+import com.example.eight.R
+import com.example.eight.model.db.Contact
+import kotlinx.android.synthetic.main.activity_add_contact.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.UUID
 
 class AddContactActivity : AppCompatActivity() {
+
+    private val addContactViewModel: AddContactViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,25 +60,33 @@ class AddContactActivity : AppCompatActivity() {
         if (item.itemId == R.id.action_check) {
             if (editTextTextPersonName.text.toString().isNotEmpty()) {
                 if (contactEditText.text.toString().isNotEmpty()) {
-                    TelephoneDirectory.addContact(Contact(UUID.randomUUID().toString(),
-                        editTextTextPersonName.text.toString(),
-                        radio2.isChecked,
-                        contactEditText.text.toString()))
+                    addContactViewModel.addContactToList(
+                        Contact(
+                            UUID.randomUUID().toString(),
+                            editTextTextPersonName.text.toString(),
+                            radio2.isChecked,
+                            contactEditText.text.toString()
+                        )
+                    )
                     editTextTextPersonName.text = null
                     contactEditText.text = null
-                    Toast.makeText(this,
+                    Toast.makeText(
+                        this,
                         resources.getString(R.string.contact_added),
-                        Toast.LENGTH_LONG).show()
-                } else Toast.makeText(this,
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else Toast.makeText(
+                    this,
                     resources.getString(R.string.enter_contact),
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG
+                ).show()
             } else Toast.makeText(this, resources.getString(R.string.enter_name), Toast.LENGTH_LONG)
                 .show()
         }
         return true
     }
 
-    companion object{
+    companion object {
         @JvmStatic
         fun getIntent(context: Context) = Intent(context, AddContactActivity::class.java)
     }

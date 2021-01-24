@@ -1,4 +1,4 @@
-package com.example.eight.db
+package com.example.eight.model.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
