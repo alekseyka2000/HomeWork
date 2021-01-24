@@ -1,18 +1,8 @@
 package com.example.nine_mvm.model.forecast_service
 
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.example.nine_mvm.model.entity.ForecastData
+import io.reactivex.Single
 
-class ForecastService {
-
-    private val api = Retrofit.Builder()
-            .baseUrl("https://samples.openweathermap.org/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(Api::class.java)
-
-    fun makeGetRequest(city: String) = api.makeGetRequest(city)
-
+interface ForecastService {
+    fun getForecastData(city: String): Single<ForecastData>
 }
