@@ -11,5 +11,10 @@ val modelModule = module {
 }
 
 val domainModule = module {
-    single <ForecastDataConverter> { ForecastDataConverterImpl(forecastService = get()) }
+    single<ForecastDataConverter> {
+        ForecastDataConverterImpl(
+            forecastService = get(),
+            appContext = get()
+        )
+    }
 }
