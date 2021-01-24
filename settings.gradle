@@ -1,2 +1,3 @@
+include ':nine_mvm'
 include ':app'
 rootProject.name = "Home Work"

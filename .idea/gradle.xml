@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/nine_mvm" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
