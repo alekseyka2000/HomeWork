@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">nine_mvm</string>
     <string name="temperature_type">temperature_type</string>
+    <string name="cesius">Cesius</string>
 </resources>
