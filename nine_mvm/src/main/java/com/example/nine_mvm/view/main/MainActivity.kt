@@ -7,8 +7,12 @@ import com.example.nine_mvm.R
 import com.example.nine_mvm.view.city_chooser.CityChooserActivity
 import com.example.nine_mvm.view.settings.SettingsActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val mainViewModel: MainViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
