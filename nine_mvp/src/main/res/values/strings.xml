@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">nine_mvm</string>
+    <string name="temperature_type">temperature_type</string>
+    <string name="cesius">Cesius</string>
+    <string name="add_city">Add city</string>
+    <string name="city_name">Selected city name</string>
+    <string name="negative_button_text">Cancel</string>
+    <string name="positive_button_text">Add</string>
+    <string name="enter_city_name">Enter city name</string>
+</resources>
