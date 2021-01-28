@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface Api {
 
-    @GET("data/2.5/forecast?q=Minsk&appid=439d4b804bc8187953eb36d2a8c26a02")
+    @GET("data/2.5/forecast?appid=439d4b804bc8187953eb36d2a8c26a02")
     fun makeGetRequest(
         @Query("q")city: String
     ): Single<ForecastData>

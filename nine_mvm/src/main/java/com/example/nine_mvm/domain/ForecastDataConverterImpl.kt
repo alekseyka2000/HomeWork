@@ -18,11 +18,11 @@ class ForecastDataConverterImpl(
         return forecastService.getForecastData(city).map { data ->
             data.list.map { forecast ->
                 ConvertedForecastData(
-                    forecast.dt_txt.takeLast(8),
+                    forecast.dtTxt.takeLast(8),
                     forecast.weather.first().description,
                     when (sharedPref.getBoolean(appContext.getString(R.string.temperature_type), true)) {
-                        false -> (((forecast.main.temp - 273.15) * 9 / 5).toInt() + 32).toString()
-                        true -> (forecast.main.temp - 273.15).toString()
+                        false -> (((forecast.main.temp - 273.15) * 9 / 5).toInt() + 32).toInt().toString()+"°F"
+                        true -> (forecast.main.temp - 273.15).toInt().toString()+"℃"
                     }
                 )
             }

@@ -1,15 +1,16 @@
-package com.example.nine_mvm.model.forecast_service
+package com.example.nine_mvm.model.entity
 
-import com.example.nine_mvm.model.entity.*
+import com.google.gson.annotations.SerializedName
+
 
 data class Forecast(
-    val clouds: Clouds,
-    val dt: Int,
-    val dt_txt: String,
-    val main: Main,
-    val rain: Rain,
-    val snow: Snow,
-    val sys: Sys,
-    val weather: List<Weather>,
-    val wind: Wind
+
+    @SerializedName("dt") val dt : Int,
+    @SerializedName("main") val main : Main,
+    @SerializedName("weather") val weather : List<Weather>,
+    @SerializedName("clouds") val clouds : Clouds,
+    @SerializedName("wind") val wind : Wind,
+    @SerializedName("rain") val rain : Rain,
+    @SerializedName("sys") val sys : Sys,
+    @SerializedName("dt_txt") val dtTxt : String
 )

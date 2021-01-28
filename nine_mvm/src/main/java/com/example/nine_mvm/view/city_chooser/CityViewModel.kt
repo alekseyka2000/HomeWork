@@ -39,4 +39,9 @@ class CityViewModel(private val cityRepo: CityRepo) : ViewModel() {
                 { messageMutableLiveData.value = it.message })
         )
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        subscriber.clear()
+    }
 }

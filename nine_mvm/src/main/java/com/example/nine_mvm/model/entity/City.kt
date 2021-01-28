@@ -1,8 +1,10 @@
 package com.example.nine_mvm.model.entity
 
+import com.google.gson.annotations.SerializedName
+
 data class City(
-    val coord: Coord,
-    val country: String,
-    val id: Int,
-    val name: String
+    @SerializedName("id") val id : Int,
+    @SerializedName("name") val name : String,
+    @SerializedName("coord") val coord : Coord,
+    @SerializedName("country") val country : String
 )

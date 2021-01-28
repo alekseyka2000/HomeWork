@@ -1,11 +1,11 @@
 package com.example.nine_mvm.model.entity
 
-import com.example.nine_mvm.model.forecast_service.Forecast
+import com.google.gson.annotations.SerializedName
 
 data class ForecastData(
-    val city: City,
-    val cnt: Int,
-    val cod: String,
-    val list: List<Forecast>,
-    val message: Double
+    @SerializedName("cod") val cod : Int,
+    @SerializedName("message") val message : Double,
+    @SerializedName("cnt") val cnt : Int,
+    @SerializedName("list") val list : List<Forecast>,
+    @SerializedName("city") val city : City
 )
