@@ -1,2 +1,4 @@
+include ':datareciver'
+include ':eleven'
 include ':app'
 rootProject.name = "Home Work"
