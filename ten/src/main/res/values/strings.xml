@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ten</string>
+    <string name="playImage">Play image</string>
+    <string name="songImage">Song image</string>
 </resources>
