@@ -1,6 +1,5 @@
 package com.example.ten
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -13,7 +12,7 @@ import kotlin.properties.Delegates
 class SongListAdapter(private val cellClickListener: (String) -> Unit) :
     RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
-    private var selectedItem: Int? = null
+    var selectedItem: Int? = null
 
     var songList: List<String> by Delegates.observable(emptyList()) { _, oldValue, newValue ->
         notifyChanges(oldValue, newValue)
@@ -29,7 +28,6 @@ class SongListAdapter(private val cellClickListener: (String) -> Unit) :
             bind(songList[position], position, selectedItem)
             itemView.setOnClickListener {
                 cellClickListener(songList[position])
-                Log.d("Log", selectedItem.toString())
                 selectedItem = if (selectedItem == null) {
                     position
                 } else {
@@ -40,7 +38,6 @@ class SongListAdapter(private val cellClickListener: (String) -> Unit) :
                     }
                 }
                 notifyItemChanged(position)
-                Log.d("Log", selectedItem.toString())
             }
         }
     }

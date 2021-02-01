@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,24 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun itemClick(selectSong: String) {
         if (serviceActions == null)
-            startService(
-                Intent(
-                    this@MainActivity,
-                    MediaService::class.java
-                ).putExtra(MediaService.SONG, selectSong)
-            )
+            startService(MediaService.getIntent(this@MainActivity, selectSong))
         else {
-            stopService(Intent(this@MainActivity, MediaService::class.java))
+            stopService(MediaService.getIntent(this))
             if (serviceActions?.getCurrentSong() != selectSong && serviceActions?.getCurrentSong() != null)
-                startService(
-                    Intent(this@MainActivity, MediaService::class.java).putExtra(
-                        MediaService.SONG,
-                        selectSong
-                    )
-                )
+                startService(MediaService.getIntent(this, selectSong))
         }
         bindService(
-            Intent(this, MediaService::class.java),
+            Intent(this@MainActivity, MediaService::class.java),
             serviceConnection,
             0
         )
@@ -56,10 +47,20 @@ class MainActivity : AppCompatActivity() {
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             serviceActions = (service as MediaService.ServiceBinder).getService()
+            (serviceActions as MediaService).setListener{ currentSong: Int -> trackChangListener(currentSong)}
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
             serviceActions = null
+        }
+    }
+
+    private fun trackChangListener(song: Int){
+        songListAdapter.apply {
+            val privSong = selectedItem
+            selectedItem = song
+            notifyItemChanged(song)
+            privSong?.let { notifyItemChanged(privSong) }
         }
     }
 }
